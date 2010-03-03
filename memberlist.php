@@ -588,6 +588,7 @@ switch ($mode)
 
 			'POSTS_DAY'			=> sprintf($user->lang['POST_DAY'], $posts_per_day),
 			'POSTS_PCT'			=> sprintf($user->lang['POST_PCT'], $percentage),
+			'GITHUB'         => $member['user_github'],
 
 			'OCCUPATION'	=> (!empty($member['user_occ'])) ? censor_text($member['user_occ']) : '',
 			'INTERESTS'		=> (!empty($member['user_interests'])) ? censor_text($member['user_interests']) : '',
@@ -1387,6 +1388,7 @@ switch ($mode)
 				'USERNAME'	=> $username,
 				'EMAIL'		=> $email,
 				'ICQ'		=> $icq,
+				'GITHUB'		=> $github,
 				'AIM'		=> $aim,
 				'YAHOO'		=> $yahoo,
 				'MSNM'		=> $msn,
@@ -1700,6 +1702,7 @@ function show_profile($data, $user_notes_enabled = false, $warn_user_enabled = f
 		'LOCATION'		=> ($data['user_from']) ? $data['user_from'] : '',
 
 		'USER_ICQ'			=> $data['user_icq'],
+		'USER_GITHUB'		=> $data['user_github'],
 		'USER_AIM'			=> $data['user_aim'],
 		'USER_YIM'			=> $data['user_yim'],
 		'USER_MSN'			=> $data['user_msnm'],

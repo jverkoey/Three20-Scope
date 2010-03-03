@@ -274,6 +274,7 @@ class ucp_profile
 
 				$data = array(
 					'icq'			=> request_var('icq', $user->data['user_icq']),
+					'github'			=> request_var('github', $user->data['user_github']),
 					'aim'			=> request_var('aim', $user->data['user_aim']),
 					'msn'			=> request_var('msn', $user->data['user_msnm']),
 					'yim'			=> request_var('yim', $user->data['user_yim']),
@@ -307,6 +308,7 @@ class ucp_profile
 						'icq'			=> array(
 							array('string', true, 3, 15),
 							array('match', true, '#^[0-9]+$#i')),
+						'github'   => array('string', true, 4, 15),
 						'aim'			=> array('string', true, 3, 255),
 						'msn'			=> array('string', true, 5, 255),
 						'jabber'		=> array(
@@ -359,6 +361,7 @@ class ucp_profile
 
 						$sql_ary = array(
 							'user_icq'		=> $data['icq'],
+							'user_github'		=> $data['github'],
 							'user_aim'		=> $data['aim'],
 							'user_msnm'		=> $data['msn'],
 							'user_yim'		=> $data['yim'],
@@ -430,6 +433,7 @@ class ucp_profile
 					'ERROR'		=> (sizeof($error)) ? implode('<br />', $error) : '',
 
 					'ICQ'		=> $data['icq'],
+					'GITHUB'		=> $data['github'],
 					'YIM'		=> $data['yim'],
 					'AIM'		=> $data['aim'],
 					'MSN'		=> $data['msn'],

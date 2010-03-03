@@ -560,6 +560,8 @@ $lang = array_merge($lang, array(
 	'SUBFORUMS'					=> 'Subforums',
 	'SUBJECT'					=> 'Subject',
 	'SUBMIT'					=> 'Submit',
+  'GITHUB'				=> 'Github',
+  'VIEW_GITHUB'			=> 'View Github',
 
 	'TERMS_USE'			=> 'Terms of use',
 	'TEST_CONNECTION'	=> 'Test connection',
