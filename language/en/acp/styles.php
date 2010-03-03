@@ -230,6 +230,9 @@ $lang = array_merge($lang, array(
 
 	'IMG_ICON_POST_DELETE'			=> 'Delete post',
 	'IMG_ICON_POST_EDIT'			=> 'Edit post',
+  //added by Ajax Quick Edit
+	'IMG_ICON_POST_QUICKEDIT'		=> 'QuickEdit post',
+  //end added by Ajax Quick Edit
 	'IMG_ICON_POST_INFO'			=> 'Show post details',
 	'IMG_ICON_POST_QUOTE'			=> 'Quote post',
 	'IMG_ICON_POST_REPORT'			=> 'Report post',
