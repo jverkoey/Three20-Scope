@@ -707,6 +707,14 @@ if ($keywords || $author || $author_id || $search_id || $submit)
 				}
 			}
 
+			// BEGIN Topic Preview Mod
+			if ($config['topic_preview_limit'])
+			{
+				$sql_from .= ' LEFT JOIN ' . POSTS_TABLE . ' p ON (p.post_id = t.topic_first_post_id)';
+            	$sql_select .= ', p.post_text AS first_post_preview_text';
+			}
+			// END Topic Preview Mod
+
 			if ($config['load_anon_lastread'] || ($user->data['is_registered'] && !$config['load_db_lastread']))
 			{
 				$tracking_topics = (isset($_COOKIE[$config['cookie_name'] . '_track'])) ? ((STRIP) ? stripslashes($_COOKIE[$config['cookie_name'] . '_track']) : $_COOKIE[$config['cookie_name'] . '_track']) : '';
@@ -940,6 +948,22 @@ if ($keywords || $author || $author_id || $search_id || $submit)
 
 				$row['topic_title'] = preg_replace('#(?!<.*)(?<!\w)(' . $hilit . ')(?!\w|[^<>]*(?:</s(?:cript|tyle))?>)#is', '<span class="posthilit">$1</span>', $row['topic_title']);
 
+				// BEGIN Topic Preview Mod
+				if (!empty($row['first_post_preview_text']))
+				{
+					// strip bbcode
+					include($phpbb_root_path . 'includes/topic_preview.' . $phpEx);			
+					$first_post_preview_text = bbcode_strip($row['first_post_preview_text']);
+					if (utf8_strlen($first_post_preview_text) >= $config['topic_preview_limit'])
+					{
+						$first_post_preview_text = (utf8_strlen($first_post_preview_text) > $config['topic_preview_limit']) ? utf8_substr($first_post_preview_text, 0, $config['topic_preview_limit']) : $first_post_preview_text;
+						// use last space before the character limit as the break-point, if one exists
+						$new_char_limit = utf8_strrpos($first_post_preview_text, ' ') != false ? utf8_strrpos($first_post_preview_text, ' ') : $config['topic_preview_limit'];
+						$first_post_preview_text = utf8_substr($first_post_preview_text, 0, $new_char_limit) . '...';
+					}
+				}
+				// END Topic Preview Mod
+
 				$tpl_ary = array(
 					'TOPIC_AUTHOR'				=> get_username_string('username', $row['topic_poster'], $row['topic_first_poster_name'], $row['topic_first_poster_colour']),
 					'TOPIC_AUTHOR_COLOUR'		=> get_username_string('colour', $row['topic_poster'], $row['topic_first_poster_name'], $row['topic_first_poster_colour']),
@@ -960,6 +984,10 @@ if ($keywords || $author || $author_id || $search_id || $submit)
 					'TOPIC_FOLDER_IMG_ALT'	=> $user->lang[$folder_alt],
 					'TOPIC_FOLDER_IMG_WIDTH'=> $user->img($folder_img, '', false, '', 'width'),
 					'TOPIC_FOLDER_IMG_HEIGHT'	=> $user->img($folder_img, '', false, '', 'height'),
+
+					// BEGIN Topic Preview Mod
+					'TOPIC_PREVIEW_TEXT'	=> (isset($first_post_preview_text)) ? censor_text($first_post_preview_text) : '',
+					// END Topic Preview Mod
 
 					'TOPIC_ICON_IMG'		=> (!empty($icons[$row['icon_id']])) ? $icons[$row['icon_id']]['img'] : '',
 					'TOPIC_ICON_IMG_WIDTH'	=> (!empty($icons[$row['icon_id']])) ? $icons[$row['icon_id']]['width'] : '',

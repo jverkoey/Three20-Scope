@@ -32,6 +32,10 @@ class acp_board
 
 		$user->add_lang('acp/board');
 
+ 		// BEGIN Topic Preview Mod
+		$user->add_lang('mods/topic_preview');
+		// END Topic Preview Mod
+
 		$action	= request_var('action', '');
 		$submit = (isset($_POST['submit'])) ? true : false;
 
@@ -97,6 +101,10 @@ class acp_board
 						'load_cpf_memberlist'	=> array('lang' => 'LOAD_CPF_MEMBERLIST',	'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => false),
 						'load_cpf_viewprofile'	=> array('lang' => 'LOAD_CPF_VIEWPROFILE',	'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => false),
 						'load_cpf_viewtopic'	=> array('lang' => 'LOAD_CPF_VIEWTOPIC',	'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => false),
+
+						// BEGIN Topic Preview Mod
+						'topic_preview_limit'		=> array('lang' => 'TOPIC_PREVIEW','validate' => 'int',	'type' => 'text:3:3', 'explain' => true, 'append' => ' ' . $user->lang['CHARS']),
+						// END Topic Preview Mod
 
 						'legend3'					=> 'ACP_SUBMIT_CHANGES',
 					)

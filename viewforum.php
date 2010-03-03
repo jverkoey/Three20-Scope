@@ -415,6 +415,14 @@ if ($user->data['is_registered'])
 	}
 }
 
+// BEGIN Topic Preview Mod
+if ($config['topic_preview_limit'])
+{
+	$sql_array['LEFT_JOIN'][] = array('FROM' => array(POSTS_TABLE => 'pt'), 'ON' => 'pt.post_id = t.topic_first_post_id');
+	$sql_array['SELECT'] .= ', pt.post_text AS first_post_preview_text';
+}
+// END Topic Preview Mod
+
 if ($forum_data['forum_type'] == FORUM_POST)
 {
 	// Obtain announcements ... removed sort ordering, sort by time in all cases
@@ -535,10 +543,25 @@ if (sizeof($topic_list))
 // If we have some shadow topics, update the rowset to reflect their topic information
 if (sizeof($shadow_topic_list))
 {
-	$sql = 'SELECT *
-		FROM ' . TOPICS_TABLE . '
-		WHERE ' . $db->sql_in_set('topic_id', array_keys($shadow_topic_list));
-	$result = $db->sql_query($sql);
+	// BEGIN Topic Preview Mod
+	if ($config['topic_preview_limit'])
+	{
+		$sql_join = ' LEFT JOIN ' . POSTS_TABLE . ' p ON (p.post_id = t.topic_first_post_id)';
+		$sql_select =  ', p.post_text AS first_post_preview_text';
+
+		$sql = 'SELECT t.* ' . $sql_select . '
+			FROM ' . TOPICS_TABLE . ' t
+			' . $sql_join . 'WHERE ' . $db->sql_in_set(' t.topic_id', array_keys($shadow_topic_list));
+		$result = $db->sql_query($sql);
+	}
+	else
+	{
+		$sql = 'SELECT *
+			FROM ' . TOPICS_TABLE . '
+			WHERE ' . $db->sql_in_set('topic_id', array_keys($shadow_topic_list));
+		$result = $db->sql_query($sql);
+	}
+	// END Topic Preview Mod
 
 	while ($row = $db->sql_fetchrow($result))
 	{
@@ -703,6 +726,23 @@ if (sizeof($topic_list))
 			}
 		}
 		// www.phpBB-SEO.com SEO TOOLKIT END -> no dupe
+
+		// BEGIN Topic Preview Mod
+		if (!empty($row['first_post_preview_text']) && $auth->acl_get('f_read', $forum_id))
+		{
+			// strip all bbcode
+			include($phpbb_root_path . 'includes/topic_preview.' . $phpEx);
+			$first_post_preview_text = bbcode_strip($row['first_post_preview_text']);
+			if (utf8_strlen($first_post_preview_text) >= $config['topic_preview_limit'])
+			{
+				$first_post_preview_text = (utf8_strlen($first_post_preview_text) > $config['topic_preview_limit']) ? utf8_substr($first_post_preview_text, 0, $config['topic_preview_limit']) : $first_post_preview_text;
+				// use last space before the character limit as the break-point, if one exists
+				$new_char_limit = utf8_strrpos($first_post_preview_text, ' ') != false ? utf8_strrpos($first_post_preview_text, ' ') : $config['topic_preview_limit'];
+				$first_post_preview_text = utf8_substr($first_post_preview_text, 0, $new_char_limit) . '...';
+			}
+		}
+		// END Topic Preview Mod
+
 		// Send vars to template
 		$template->assign_block_vars('topicrow', array(
 			'FORUM_ID'					=> $forum_id,
@@ -729,6 +769,10 @@ if (sizeof($topic_list))
 			'TOPIC_FOLDER_IMG_ALT'	=> $user->lang[$folder_alt],
 			'TOPIC_FOLDER_IMG_WIDTH'=> $user->img($folder_img, '', false, '', 'width'),
 			'TOPIC_FOLDER_IMG_HEIGHT'	=> $user->img($folder_img, '', false, '', 'height'),
+
+			// BEGIN Topic Preview Mod
+			'TOPIC_PREVIEW_TEXT'	=> (isset($first_post_preview_text)) ? censor_text($first_post_preview_text) : '',
+			// END Topic Preview Mod
 
 			'TOPIC_ICON_IMG'		=> (!empty($icons[$row['icon_id']])) ? $icons[$row['icon_id']]['img'] : '',
 			'TOPIC_ICON_IMG_WIDTH'	=> (!empty($icons[$row['icon_id']])) ? $icons[$row['icon_id']]['width'] : '',
