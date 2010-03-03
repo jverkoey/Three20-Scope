@@ -32,6 +32,7 @@ class ucp_profile
 		global $config, $db, $user, $auth, $template, $phpbb_root_path, $phpEx;
 
 		$user->add_lang('posting');
+		$user->add_lang('mods/gravatar');
 
 		$preview	= (!empty($_POST['preview'])) ? true : false;
 		$submit		= (!empty($_POST['submit'])) ? true : false;
@@ -559,6 +560,7 @@ class ucp_profile
 			case 'avatar':
 
 				include($phpbb_root_path . 'includes/functions_display.' . $phpEx);
+				include($phpbb_root_path . 'includes/functions_gravatar.' . $phpEx);
 
 				$display_gallery = request_var('display_gallery', '0');
 				$avatar_select = basename(request_var('avatar_select', ''));
@@ -626,6 +628,7 @@ class ucp_profile
 						'S_UPLOAD_AVATAR_FILE'	=> ($can_upload && $config['allow_avatar_upload']) ? true : false,
 						'S_UPLOAD_AVATAR_URL'	=> ($can_upload && $config['allow_avatar_remote_upload']) ? true : false,
 						'S_LINK_AVATAR'			=> ($auth->acl_get('u_chgavatar') && $config['allow_avatar_remote']) ? true : false,
+						'S_ALLOW_GRAV'			=> ($auth->acl_get('u_chgavatar') && $config['allow_avatar_grav']) ? true : false,
 						'S_DISPLAY_GALLERY'		=> ($auth->acl_get('u_chgavatar') && $config['allow_avatar_local']) ? true : false)
 					);
 				}

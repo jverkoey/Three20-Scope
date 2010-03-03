@@ -35,6 +35,7 @@ class acp_users
 		global $phpbb_root_path, $phpbb_admin_path, $phpEx, $table_prefix, $file_uploads;
 
 		$user->add_lang(array('posting', 'ucp', 'acp/users'));
+		$user->add_lang('mods/gravatar');
 		$this->tpl_name = 'acp_users';
 		$this->page_title = 'ACP_USER_' . strtoupper($mode);
 
@@ -1663,6 +1664,7 @@ class acp_users
 
 				include($phpbb_root_path . 'includes/functions_display.' . $phpEx);
 				include($phpbb_root_path . 'includes/functions_user.' . $phpEx);
+				include($phpbb_root_path . 'includes/functions_gravatar.' . $phpEx);
 
 				$can_upload = (file_exists($phpbb_root_path . $config['avatar_path']) && @is_writable($phpbb_root_path . $config['avatar_path']) && $file_uploads) ? true : false;
 
@@ -1712,6 +1714,7 @@ class acp_users
 					'S_UPLOAD_FILE'		=> ($config['allow_avatar'] && $can_upload && $config['allow_avatar_upload']) ? true : false,
 					'S_REMOTE_UPLOAD'	=> ($config['allow_avatar'] && $can_upload && $config['allow_avatar_remote_upload']) ? true : false,
 					'S_ALLOW_REMOTE'	=> ($config['allow_avatar'] && $config['allow_avatar_remote']) ? true : false,
+					'S_ALLOW_GRAV'		=> ($config['allow_avatar_grav']) ? true : false,
 					'S_DISPLAY_GALLERY'	=> ($config['allow_avatar'] && $config['allow_avatar_local'] && !$display_gallery) ? true : false,
 					'S_IN_GALLERY'		=> ($config['allow_avatar'] && $config['allow_avatar_local'] && $display_gallery) ? true : false,
 

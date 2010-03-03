@@ -36,6 +36,12 @@
 				<dd><input class="button2" type="submit" name="display_gallery" value="{L_DISPLAY_GALLERY}" /></dd>
 			</dl>
 		<!-- ENDIF -->
+		<!-- IF S_ALLOW_GRAV -->
+			<dl> 
+				<dt><label for="gravatar">{L_USE_GRAVATAR}:</label><br /><span>{L_USE_GRAVATAR_EXPLAIN}</span></dt>
+				<dd><input name="gravatar" type="checkbox" class="radio" id="gravatar" value="1" /></dd>
+			</dl>
+		<!-- ENDIF -->
 	<!-- ELSE -->
 		</fieldset>
 

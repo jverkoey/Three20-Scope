@@ -2290,6 +2290,7 @@ function avatar_process_user(&$error, $custom_userdata = false)
 	$data = array(
 		'uploadurl'		=> request_var('uploadurl', ''),
 		'remotelink'	=> request_var('remotelink', ''),
+		'gravatar'		=> (isset($_REQUEST['gravatar'])) ? make_gravatar(($custom_userdata !== false) ? $custom_userdata['user_email'] : $user->data['user_email'] ) : '',
 		'width'			=> request_var('width', 0),
 		'height'		=> request_var('height', 0),
 	);
@@ -2297,6 +2298,7 @@ function avatar_process_user(&$error, $custom_userdata = false)
 	$error = validate_data($data, array(
 		'uploadurl'		=> array('string', true, 5, 255),
 		'remotelink'	=> array('string', true, 5, 255),
+		'gravatar'		=> array('string', true, 5, 255),
 		'width'			=> array('string', true, 1, 3),
 		'height'		=> array('string', true, 1, 3),
 	));
@@ -2331,6 +2333,10 @@ function avatar_process_user(&$error, $custom_userdata = false)
 	else if ($data['remotelink'] && $change_avatar && $config['allow_avatar_remote'])
 	{
 		list($sql_ary['user_avatar_type'], $sql_ary['user_avatar'], $sql_ary['user_avatar_width'], $sql_ary['user_avatar_height']) = avatar_remote($data, $error);
+	}
+	else if ($data['gravatar'] && $change_avatar && $config['allow_avatar_grav'])
+	{
+		list($sql_ary['user_avatar_type'], $sql_ary['user_avatar'], $sql_ary['user_avatar_width'], $sql_ary['user_avatar_height']) = gravatar_process($data, $error);
 	}
 	else if ($avatar_select && $change_avatar && $config['allow_avatar_local'])
 	{
