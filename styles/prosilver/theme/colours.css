@@ -48,18 +48,17 @@ hr.dashed {
 /* Round cornered boxes and backgrounds
 ---------------------------------------- */
 .headerbar {
-	background-color: #12A3EB;
-	background-image: url("{T_THEME_PATH}/images/bg_header.gif");
+	background-color: #FF9933;
+	background-image: url("{T_THEME_PATH}/images/headergradient.png");
 	color: #FFFFFF;
 }
 
 .navbar {
-	background-color: #cadceb;
+	background-color: #ffcc99;
 }
 
 .forabg {
-	background-color: #0076b1;
-	background-image: url("{T_THEME_PATH}/images/bg_list.gif");
+	background-color: #ffcc99;
 }
 
 .forumbg {
@@ -240,19 +239,28 @@ a:active	{ color: #368AD2; }
 
 /* Links on gradient backgrounds */
 #search-box a:link, .navbg a:link, .forumbg .header a:link, .forabg .header a:link, th a:link {
-	color: #FFFFFF;
+	color: #000000;
+	text-decoration: none;
+}
+
+#search-box a:link {
+  color: #fff;
 }
 
 #search-box a:visited, .navbg a:visited, .forumbg .header a:visited, .forabg .header a:visited, th a:visited {
-	color: #FFFFFF;
+	color: #111;
 }
 
 #search-box a:hover, .navbg a:hover, .forumbg .header a:hover, .forabg .header a:hover, th a:hover {
-	color: #A8D8FF;
+	color: #666;
+}
+
+#search-box a:hover {
+  color: #EEE;
 }
 
 #search-box a:active, .navbg a:active, .forumbg .header a:active, .forabg .header a:active, th a:active {
-	color: #C8E6FF;
+	color: #111;
 }
 
 /* Links for forum/topic lists */
@@ -408,7 +416,7 @@ li.row:hover dd {
 }
 
 li.header dt, li.header dd {
-	color: #FFFFFF;
+	color: #000;
 }
 
 /* Forum list column styles */
