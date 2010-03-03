@@ -555,6 +555,10 @@ switch ($mode)
 			unset($module);
 		}
 
+		// [+] Karma MOD
+		$karmamod->memberlist_viewprofile($member, $foe, $friend);
+		// [-] Karma MOD
+
 		$template->assign_vars(show_profile($member, $user_notes_enabled, $warn_user_enabled));
 
 		// Custom Profile Fields

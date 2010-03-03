@@ -37,6 +37,10 @@ switch ($mode)
 	break;
 }
 
+// [+] Karma MOD
+$karmamod->faq();
+// [-] Karma MOD
+
 // Pull the array data from the lang pack
 $switch_column = $found_switch = false;
 $help_blocks = array();

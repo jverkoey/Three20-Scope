@@ -86,6 +86,10 @@ if ($interval && !$auth->acl_get('u_ignoreflood'))
 $limit_days		= array(0 => $user->lang['ALL_RESULTS'], 1 => $user->lang['1_DAY'], 7 => $user->lang['7_DAYS'], 14 => $user->lang['2_WEEKS'], 30 => $user->lang['1_MONTH'], 90 => $user->lang['3_MONTHS'], 180 => $user->lang['6_MONTHS'], 365 => $user->lang['1_YEAR']);
 $sort_by_text	= array('a' => $user->lang['SORT_AUTHOR'], 't' => $user->lang['SORT_TIME'], 'f' => $user->lang['SORT_FORUM'], 'i' => $user->lang['SORT_TOPIC_TITLE'], 's' => $user->lang['SORT_POST_SUBJECT']);
 
+// [+] Karma MOD
+$karmamod->search_dropdown($sort_by_text);
+// [-] Karma MOD
+
 $s_limit_days = $s_sort_key = $s_sort_dir = $u_sort_param = '';
 gen_sort_selects($limit_days, $sort_by_text, $sort_days, $sort_key, $sort_dir, $s_limit_days, $s_sort_key, $s_sort_dir, $u_sort_param);
 
@@ -298,6 +302,10 @@ if ($keywords || $author || $author_id || $search_id || $submit)
 
 	// define some variables needed for retrieving post_id/topic_id information
 	$sort_by_sql = array('a' => 'u.username_clean', 't' => (($show_results == 'posts') ? 'p.post_time' : 't.topic_last_post_time'), 'f' => 'f.forum_id', 'i' => 't.topic_title', 's' => (($show_results == 'posts') ? 'p.post_subject' : 't.topic_title'));
+
+	// [+] Karma MOD
+	$karmamod->search_order_sql($sort_by_sql);
+	// [-] Karma MOD
 
 	// pre-made searches
 	$sql = $field = $l_search_title = '';

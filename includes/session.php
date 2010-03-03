@@ -1877,6 +1877,14 @@ class user extends session
 				redirect(append_sid("{$phpbb_root_path}ucp.$phpEx", 'i=profile&amp;mode=reg_details'));
 			}
 		}
+		// [+] Karma MOD
+		if (!class_exists('karmamod'))
+		{
+			require($phpbb_root_path . 'includes/functions_karma.' . $phpEx);
+		}
+		global $karmamod;
+		$karmamod = new karmamod();
+		// [-] Karma MOD
 
 		return;
 	}

@@ -1,0 +1,109 @@
+<!-- INCLUDE overall_header.html -->
+
+<!-- DEFINE $KARMAMOD = 1 -->
+
+<h2>{PAGE_TITLE}</h2>
+
+<form method="post" action="{S_PROFILE_ACTION}" id="viewprofile">
+<div class="panel bg1<!-- IF S_ONLINE --> online<!-- ENDIF -->">
+	<div class="inner"><span class="corners-top"><span></span></span>
+	
+	<!-- IF AVATAR_IMG -->
+		<dl class="left-box">
+			<dt>{AVATAR_IMG}</dt>
+			<!-- IF RANK_TITLE --><dd style="text-align: center;">{RANK_TITLE}</dd><!-- ENDIF -->
+			<!-- IF RANK_IMG --><dd style="text-align: center;">{RANK_IMG}</dd><!-- ENDIF -->
+		</dl>
+	<!-- ENDIF -->
+
+	<dl class="left-box details" style="width: 80%;">
+		<dt>{L_USERNAME}:</dt>
+		<dd>
+			<!-- IF USER_COLOR --><span style="color: {USER_COLOR}; font-weight: bold;"><!-- ELSE --><span><!-- ENDIF -->{USERNAME}</span>
+			<!-- IF U_USER_ADMIN --> [ <a href="{U_USER_ADMIN}">{L_USER_ADMIN}</a> ]<!-- ENDIF -->
+			<!-- IF U_SWITCH_PERMISSIONS --> [ <a href="{U_SWITCH_PERMISSIONS}">{L_USE_PERMISSIONS}</a> ]<!-- ENDIF -->
+		</dd>
+		<!-- IF not AVATAR_IMG -->
+			<!-- IF RANK_TITLE --><dt>{L_RANK}:</dt><dd>{RANK_TITLE}</dd><!-- ENDIF -->
+			<!-- IF RANK_IMG --><dt>{L_RANK}:</dt><dd>{RANK_IMG}</dd><!-- ENDIF -->
+		<!-- ENDIF -->
+		<!-- IF S_USER_INACTIVE --><dt>{L_USER_IS_INACTIVE}:</dt><dd>{USER_INACTIVE_REASON}</dd><!-- ENDIF -->
+		<!-- IF LOCATION --><dt>{L_LOCATION}:</dt> <dd>{LOCATION}</dd><!-- ENDIF -->
+		<!-- IF AGE --><dt>{L_AGE}:</dt> <dd>{AGE}</dd><!-- ENDIF -->
+		<!-- IF OCCUPATION --><dt>{L_OCCUPATION}:</dt> <dd>{OCCUPATION}</dd><!-- ENDIF -->
+		<!-- IF INTERESTS --><dt>{L_INTERESTS}:</dt> <dd>{INTERESTS}</dd><!-- ENDIF -->
+		<!-- IF S_GROUP_OPTIONS --><dt>{L_USERGROUPS}:</dt> <dd><select name="g">{S_GROUP_OPTIONS}</select> <input type="submit" name="submit" value="{L_GO}" class="button2" /></dd><!-- ENDIF -->
+		<!-- IF SIGNATURE --><dt>{L_SIGNATURE}:</dt> <dd><div class="signature">{SIGNATURE}</div></dd><!-- ENDIF -->
+	</dl>
+
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+</form>
+
+<h3>{L_KARMA_COMMENTS}</h3>
+
+<p>{L_KARMA_COMMENTS_EXPLAIN}</p>
+
+<!-- IF PAGINATION or TOTAL_COMMENTS -->
+	<div class="pagination">
+		{TOTAL_COMMENTS}
+		<!-- IF PAGE_NUMBER --><!-- IF PAGINATION --> &bull; <a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE --> &bull; {PAGE_NUMBER}<!-- ENDIF --><!-- ENDIF -->
+	</div>
+	<div class="clear"></div>
+<!-- ENDIF -->
+
+<!-- BEGIN karma_comments_row -->
+	<div id="ppr{karma_comments_row.COMMENT_ID}" class="post <!-- IF karma_comments_row.S_ROW_COUNT is odd -->bg1<!-- ELSE -->bg2<!-- ENDIF --><!-- IF karma_comments_row.ONLINE_STATUS --> online<!-- ENDIF -->">
+		<div class="inner"><span class="corners-top"><span></span></span>
+		
+		<div class="postbody">
+			<p class="author"><!-- IF not S_IS_BOT and karma_comments_row.U_MINI_POST --><a href="{karma_comments_row.U_MINI_POST}"><!-- ENDIF --><!-- IF karma_comments_row.ICON_IMG --><img src="{T_ICONS_PATH}{karma_comments_row.ICON_IMG}" width="{karma_comments_row.ICON_IMG_WIDTH}" height="{karma_comments_row.ICON_IMG_HEIGHT}" alt="" /><!-- ELSE -->{karma_comments_row.MINI_POST_IMG}<!-- ENDIF --><!-- IF not S_IS_BOT and karma_comments_row.U_MINI_POST --></a><!-- ENDIF --> {karma_comments_row.KARMA_POWER} {L_POST_BY_AUTHOR}<strong> {karma_comments_row.POST_AUTHOR_FULL}</strong> {L_POSTED_ON_DATE} {karma_comments_row.POST_DATE}</p>
+			<div class="content">{karma_comments_row.COMMENT}</div>
+		</div>
+		
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+<!-- BEGINELSE -->
+	<div class="panel">
+		<div class="inner"><span class="corners-top"><span></span></span>
+		<strong>{L_KARMA_NO_COMMENTS}</strong>
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+<!-- END karma_comments_row -->
+
+<hr />
+<p><a href="#viewprofile" class="top2">{L_BACK_TO_TOP}</a></p>
+
+<!-- IF S_SELECT_SORT_DAYS -->
+	<form method="post" action="{S_FORUM_ACTION}">
+		<fieldset class="display-options">
+			<!-- IF PREVIOUS_PAGE --><a href="{PREVIOUS_PAGE}" class="left-box {S_CONTENT_FLOW_BEGIN}">{L_PREVIOUS}</a><!-- ENDIF -->
+			<!-- IF NEXT_PAGE --><a href="{NEXT_PAGE}" class="right-box {S_CONTENT_FLOW_END}">{L_NEXT}</a><!-- ENDIF -->
+	<!-- IF not S_IS_BOT -->
+			<label>{L_DISPLAY_TOPICS}: {S_SELECT_SORT_DAYS}</label>
+			<label>{L_SORT_BY} {S_SELECT_SORT_KEY}</label>
+			<label>{S_SELECT_SORT_DIR} <input type="submit" name="sort" value="{L_GO}" class="button2" /></label>
+	<!-- ENDIF -->
+		</fieldset>
+	</form>
+	<hr />
+<!-- ENDIF -->
+
+<!-- IF .karma_comments_row -->
+	<!-- IF PAGINATION or TOTAL_COMMENTS -->
+		<div class="pagination">
+			{TOTAL_COMMENTS}
+			<!-- IF PAGE_NUMBER --><!-- IF PAGINATION --> &bull; <a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE --> &bull; {PAGE_NUMBER}<!-- ENDIF --><!-- ENDIF -->
+		</div>
+		<div class="clear"></div><br />
+	<!-- ENDIF -->
+<!-- ENDIF -->
+
+<!-- INCLUDE jumpbox.html -->
+
+<!-- IF S_DISPLAY_ONLINE_LIST -->
+	<h3><a href="{U_VIEWONLINE}">{L_WHO_IS_ONLINE}</a></h3>
+	<p>{LOGGED_IN_USER_LIST}</p>
+<!-- ENDIF -->
+
+<!-- INCLUDE overall_footer.html -->

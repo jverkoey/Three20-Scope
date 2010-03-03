@@ -39,6 +39,13 @@
 	<p><!-- IF BIRTHDAY_LIST -->{L_CONGRATULATIONS}: <strong>{BIRTHDAY_LIST}</strong><!-- ELSE -->{L_NO_BIRTHDAYS}<!-- ENDIF --></p>
 <!-- ENDIF -->
 
+<!-- [+] Karma MOD -->
+<!-- IF KARMA_TOPLIST -->
+	<h3>{L_KARMA_TOPLIST}</h3>
+	<p>{L_KARMA_TOPLIST_EXPLAIN}: <strong>{KARMA_TOPLIST}</strong></p>
+<!-- ENDIF -->
+<!-- [-] Karma MOD -->
+
 <!-- IF NEWEST_USER -->
 	<h3>{L_STATISTICS}</h3>
 	<p>{TOTAL_POSTS} &bull; {TOTAL_TOPICS} &bull; {TOTAL_USERS} &bull; {NEWEST_USER}</p>

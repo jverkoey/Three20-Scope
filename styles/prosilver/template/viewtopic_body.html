@@ -198,6 +198,23 @@
 		<!-- END custom_fields -->
 
 		<!-- IF not S_IS_BOT -->
+		<!-- [+] Karma MOD -->
+		<!-- IF postrow.S_KARMA_ENABLED -->
+			<!-- IF postrow.U_KARMA_COMMENTS -->
+				<dd><a href="{postrow.U_KARMA_COMMENTS}"><strong>{L_KARMA}:</strong> {postrow.KARMA}</a></dd>
+			<!-- ELSE -->
+				<dd><strong>{L_KARMA}:</strong> {postrow.KARMA}</dd>
+			<!-- ENDIF -->
+			<!-- IF postrow.U_KARMA_INCREASE || postrow.U_KARMA_DECREASE -->
+				<dd>
+					<span class="karma-icons">
+					<!-- IF postrow.U_KARMA_INCREASE --><span class="karma-increase-icon"><a href="{postrow.U_KARMA_INCREASE}" title="{L_KARMA_INCREASE}"><span>{L_KARMA_INCREASE}</span></a></span><!-- ENDIF -->
+					<!-- IF postrow.U_KARMA_DECREASE --><span class="karma-decrease-icon"><a href="{postrow.U_KARMA_DECREASE}" title="{L_KARMA_DECREASE}"><span>{L_KARMA_DECREASE}</span></a></span><!-- ENDIF -->
+					</span>
+				</dd>
+			<!-- ENDIF -->
+		<!-- ENDIF -->
+		<!-- [-] Karma MOD -->
 		<!-- IF postrow.U_PM or postrow.U_EMAIL or postrow.U_WWW or postrow.U_MSN or postrow.U_ICQ or postrow.U_YIM or postrow.U_AIM or postrow.U_JABBER -->
 			<dd>
 				<ul class="profile-icons">

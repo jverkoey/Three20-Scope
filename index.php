@@ -160,6 +160,10 @@ $template->assign_vars(array(
 	'U_MCP'				=> ($auth->acl_get('m_') || $auth->acl_getf_global('m_')) ? append_sid("{$phpbb_root_path}mcp.$phpEx", 'i=main&amp;mode=front', true, $user->session_id) : '')
 );
 
+// [+] Karma MOD
+$karmamod->toplist();
+// [-] Karma MOD
+
 // Output page
 // www.phpBB-SEO.com SEO TOOLKIT BEGIN - META
 $seo_meta->collect('description', $config['sitename'] . ' : ' .  $config['site_desc']);

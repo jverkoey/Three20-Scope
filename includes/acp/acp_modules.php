@@ -569,10 +569,20 @@ class acp_modules
 			}
 			closedir($dh);
 
+			// [+] Karma MOD
+			global $karmamod;
+			$karmamod->acp_modules_global($fileinfo, $module_class);
+			// [-] Karma MOD
+
 			ksort($fileinfo);
 		}
 		else
 		{
+			// [+] Karma MOD
+			global $karmamod;
+			$karmamod->acp_modules_single($directory, $module, $module_class);
+			// [-] Karma MOD
+
 			$filename = $module_class . '_' . basename($module);
 			$class = $module_class . '_' . basename($module) . '_info';
 

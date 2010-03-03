@@ -1085,6 +1085,10 @@ $sql = $db->sql_build_query('SELECT', array(
 		AND u.user_id = p.poster_id'
 ));
 
+// [+] Karma MOD
+$karmamod->viewtopic_sql($sql);
+// [-] Karma MOD
+
 $result = $db->sql_query($sql);
 
 $now = getdate(time() + $user->timezone + $user->dst - date('Z'));
@@ -1145,6 +1149,10 @@ while ($row = $db->sql_fetchrow($result))
 		'friend'			=> $row['friend'],
 		'foe'				=> $row['foe'],
 	);
+
+	// [+] Karma MOD
+	$karmamod->viewtopic_rowset($rowset[$row['post_id']], $row);
+	// [-] Karma MOD
 
 	// Define the global bbcode bitfield, will be used to load bbcodes
 	$bbcode_bitfield = $bbcode_bitfield | base64_decode($row['bbcode_bitfield']);
@@ -1292,6 +1300,10 @@ while ($row = $db->sql_fetchrow($result))
 				}
 			}
 		}
+
+		// [+] Karma MOD
+		$karmamod->viewtopic_usercache($user_cache[$poster_id], $poster_id, $row);
+		// [-] Karma MOD
 	}
 }
 $db->sql_freeresult($result);
@@ -1700,6 +1712,10 @@ for ($i = 0, $end = sizeof($post_list); $i < $end; ++$i)
 	{
 		$postrow = array_merge($postrow, $cp_row['row']);
 	}
+
+	// [+] Karma MOD
+	$karmamod->viewtopic_postrow($postrow, $user_cache[$poster_id], $poster_id, $forum_id, $topic_id, $row);
+	// [-] Karma MOD
 
 	// Dump vars into template
 	$template->assign_block_vars('postrow', $postrow);

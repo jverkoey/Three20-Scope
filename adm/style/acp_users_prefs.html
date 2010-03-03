@@ -149,7 +149,11 @@
 		<dd>{S_POST_SORT_DIR}</dd>
 	</dl>
 	</fieldset>
-
+	<!-- [+] Karma MOD //-->
+	<!-- IF S_KARMA_ENABLE -->
+	<!-- INCLUDE acp_karma_users.html -->
+	<!-- ENDIF -->
+	<!-- [-] Karma MOD //-->
 	<fieldset class="quick">
 		<input class="button1" type="submit" name="update" value="{L_SUBMIT}" />
 		{S_FORM_TOKEN}

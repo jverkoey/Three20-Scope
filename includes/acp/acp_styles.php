@@ -132,6 +132,11 @@ parse_css_file = {PARSE_CSS_FILE}
 			),
 		);
 
+		// [+] Karma MOD
+		global $karmamod;
+		$karmamod->acp_styles_imageset($this->imageset_keys);
+		// [-] Karma MOD
+
 		// Execute overall actions
 		switch ($action)
 		{

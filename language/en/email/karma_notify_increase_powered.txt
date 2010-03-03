@@ -1,0 +1,11 @@
+Subject: Your karma was increased
+
+Hello {USERNAME},
+
+User {AUTHOR_NAME} was increased your karma with {POWER} power on "{SITENAME}".
+{COMMENT}
+{BACKLINK}
+
+You have requested that you be notified on this event, remember that you can always choose not to be notified of karma changes by changing the appropriate setting in your profile.
+
+{EMAIL_SIG}

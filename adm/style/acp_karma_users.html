@@ -1,0 +1,66 @@
+		<fieldset>
+			<legend>{L_UCP_KARMA}</legend>
+		<dl>
+			<dt><label for="karma_enable1">{L_UCP_KARMA_ENABLE}:</label><br /><span>{L_UCP_KARMA_ENABLE_EXPLAIN}</span></dt>
+			<dd>
+				<label for="karma_enable1"><input type="radio" name="karma_enable" id="karma_enable1" value="1"<!-- IF S_ENABLE --> checked="checked"<!-- ENDIF --> /> {L_YES}</label> 
+				<label for="karma_enable0"><input type="radio" name="karma_enable" id="karma_enable0" value="0"<!-- IF not S_ENABLE --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+			</dd>
+		</dl>
+		<dl>
+			<dt><label for="karma_notify_pm1">{L_UCP_KARMA_NOTIFY_PM}:</label><br /><span>{L_UCP_KARMA_NOTIFY_PM_EXPLAIN}</span></dt>
+			<dd>
+				<label for="karma_notify_pm1"><input type="radio" name="karma_notify_pm" id="karma_notify_pm1" value="1"<!-- IF S_NOTIFY_PM --> checked="checked"<!-- ENDIF --> /> {L_YES}</label> 
+				<label for="karma_notify_pm0"><input type="radio" name="karma_notify_pm" id="karma_notify_pm0" value="0"<!-- IF not S_NOTIFY_PM --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+			</dd>
+		</dl>
+		<dl>
+			<dt><label for="karma_notify_email1">{L_UCP_KARMA_NOTIFY_EMAIL}:</label><br /><span>{L_UCP_KARMA_NOTIFY_EMAIL_EXPLAIN}</span></dt>
+			<dd>
+				<label for="karma_notify_email1"><input type="radio" name="karma_notify_email" id="karma_notify_email1" value="1"<!-- IF S_NOTIFY_EMAIL --> checked="checked"<!-- ENDIF --> /> {L_YES}</label> 
+				<label for="karma_notify_email0"><input type="radio" name="karma_notify_email" id="karma_notify_email0" value="0"<!-- IF not S_NOTIFY_EMAIL --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+			</dd>
+		</dl>
+		<dl>
+			<dt><label for="karma_notify_jabber1">{L_UCP_KARMA_NOTIFY_JABBER}:</label><br /><span>{L_UCP_KARMA_NOTIFY_JABBER_EXPLAIN}</span></dt>
+			<dd>
+				<label for="karma_notify_jabber1"><input type="radio" name="karma_notify_jabber" id="karma_notify_jabber1" value="1"<!-- IF S_NOTIFY_JABBER --> checked="checked"<!-- ENDIF --> /> {L_YES}</label> 
+				<label for="karma_notify_jabber0"><input type="radio" name="karma_notify_jabber" id="karma_notify_jabber0" value="0"<!-- IF not S_NOTIFY_JABBER --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+			</dd>
+		</dl>
+		<dl>
+			<dt><label for="karma_toplist1">{L_UCP_KARMA_TOPLIST}:</label><br /><span>{L_UCP_KARMA_TOPLIST_EXPLAIN}</span></dt>
+			<dd>
+				<label for="karma_toplist1"><input type="radio" name="karma_toplist" id="karma_toplist1" value="1"<!-- IF S_TOPLIST --> checked="checked"<!-- ENDIF --> /> {L_YES}</label> 
+				<label for="karma_toplist0"><input type="radio" name="karma_toplist" id="karma_toplist0" value="0"<!-- IF not S_TOPLIST --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+			</dd>
+		</dl>
+		<dl>
+			<dt><label for="karma_toplist_users">{L_UCP_KARMA_TOPLIST_USERS}:</label><br /><span>{L_UCP_KARMA_TOPLIST_USERS_EXPLAIN}</span></dt>
+			<dd><input type="text" name="karma_toplist_users" id="karma_toplist_users" value="{TOPLIST_USERS}" maxlength="8" class="inputbox tiny" style="margin-top: 3px;" /></dd>
+		</dl>
+		<dl>
+			<dt><label for="karma_comments_per_page">{L_UCP_KARMA_COMMENTS_PER_PAGE}:</label></dt>
+			<dd><input type="text" name="karma_comments_per_page" id="karma_comments_per_page" value="{COMMENTS_PER_PAGE}" maxlength="3" class="inputbox tiny" style="margin-top: 3px;" /></dd>
+		</dl>
+		<dl>
+			<dt><label for="karma_comments_self1">{L_UCP_KARMA_COMMENTS_SELF}:</label></dt>
+			<dd>
+				<label for="karma_comments_self1"><input type="radio" name="karma_comments_self" id="karma_comments_self1" value="1"<!-- IF S_COMMENTS_SELF --> checked="checked"<!-- ENDIF --> /> {L_YES}</label> 
+				<label for="karma_comments_self0"><input type="radio" name="karma_comments_self" id="karma_comments_self0" value="0"<!-- IF not S_COMMENTS_SELF --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+			</dd>
+		</dl>
+		<hr />
+		<dl>
+			<dt><label>{L_UCP_KARMA_VIEW_COMMENTS_DAYS}:</label></dt>
+			<dd>{S_COMMENTS_SORT_DAYS}</dd>
+		</dl>
+		<dl>
+			<dt><label>{L_UCP_KARMA_VIEW_COMMENTS_KEY}:</label></dt>
+			<dd>{S_COMMENTS_SORT_KEY}</dd>
+		</dl>
+		<dl>
+			<dt><label>{L_UCP_KARMA_VIEW_COMMENTS_DIR}:</label></dt>
+			<dd>{S_COMMENTS_SORT_DIR}</dd>
+		</dl>
+		</fieldset>

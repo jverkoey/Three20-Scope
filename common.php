@@ -214,6 +214,11 @@ unset($dbpasswd);
 
 // Grab global variables, re-cache if necessary
 $config = $cache->obtain_config();
+
+// [+] Karma MOD
+require_once($phpbb_root_path . 'includes/mods/functions_karma.' . $phpEx);
+// [-] Karma MOD
+
 // www.phpBB-SEO.com SEO TOOLKIT BEGIN
 if (empty($phpbb_seo) ) {
 	require_once($phpbb_root_path . 'phpbb_seo/phpbb_seo_class.'.$phpEx);

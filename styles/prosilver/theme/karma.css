@@ -1,0 +1,56 @@
+/* proSilver Karma MOD Style Sheet
+-------------------------------------------------
+	Author: m157y
+	Version: 14 June 2009
+
+	Copyright 2007 David Lawson, m157y, A_Jelly_Doughnut
+-------------------------------------------------*/
+
+/* Karma icons block (prevents apposition of profile buttons) */
+span.karma-icons {
+	display: block;
+	width: 100%;
+	height: {IMG_ICON_KARMA_INCREASE_HEIGHT}px;
+}
+
+/* Karma icons */
+a.karma-increase-icon	{ background: none top left no-repeat; width: {IMG_ICON_KARMA_INCREASE_WIDTH}px; height: {IMG_ICON_KARMA_INCREASE_HEIGHT}px; }
+a.karma-decrease-icon	{ background: none top left no-repeat; width: {IMG_ICON_KARMA_DECREASE_WIDTH}px; height: {IMG_ICON_KARMA_DECREASE_HEIGHT}px; }
+
+/* Set karma icon dimensions */
+span.karma-increase-icon	{ width: {IMG_ICON_KARMA_INCREASE_WIDTH}px; height: {IMG_ICON_KARMA_INCREASE_HEIGHT}px; }
+span.karma-decrease-icon	{ width: {IMG_ICON_KARMA_DECREASE_WIDTH}px; height: {IMG_ICON_KARMA_DECREASE_HEIGHT}px; }
+
+/* Fix karma icon default margins */
+span.karma-increase-icon, span.karma-decrease-icon	{ margin: 0 0 0 0px; }
+
+/* Karma icons */
+span.karma-increase-icon, .karma-increase-icon a	{ background-image: url("{IMG_ICON_KARMA_INCREASE_SRC}"); }
+span.karma-decrease-icon, .karma-decrease-icon a	{ background-image: url("{IMG_ICON_KARMA_DECREASE_SRC}"); }
+
+
+/* Rollover state */
+span.karma-increase-icon, span.karma-decrease-icon {
+	float: left;
+	margin: 0 6px 3px 0;
+	background-position: 0 100%;
+}
+
+span.karma-increase-icon a, span.karma-decrease-icon a {
+	display: block;
+	float: left;
+	width: 100%;
+	height: 100%;
+	background-position: 0 0;
+}
+
+/* Hide <a> text and hide off-state image when rolling over (prevents flicker in IE) */
+span.karma-increase-icon a span, span.karma-decrease-icon a span { display:none; }
+span.karma-increase-icon a:hover, span.karma-decrease-icon a:hover { background: none; }
+
+/**/
+.karma_explain {
+	color: #999999;
+	font-weight: bold;
+	font-size: 1em;
+}

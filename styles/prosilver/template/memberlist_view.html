@@ -72,6 +72,20 @@
 			<!-- NOTE: Use a construct like this to include admin defined profile fields. Replace FIELD1 with the name of your field. -->
 			<dt>{postrow.PROFILE_FIELD1_NAME}:</dt> <dd>{postrow.PROFILE_FIELD1_VALUE}</dd>
 		<!-- ENDIF -->
+		<!-- [+] Karma MOD //-->
+		<!-- IF S_KARMA -->
+			<dt>{L_KARMA}:</dt>
+			<dd>{KARMA}<!-- IF U_KARMA_COMMENTS --> | <strong><a href="{U_KARMA_COMMENTS}">{L_KARMA_USER_COMMENTS}</a></strong><!-- ENDIF -->
+				<!-- IF U_KARMA_INCREASE || U_KARMA_DECREASE -->
+				<br />
+				<span class="karma-icons">
+				<!-- IF U_KARMA_INCREASE --><span class="karma-increase-icon"><a href="{U_KARMA_INCREASE}" title="{L_KARMA_INCREASE}"><span>{L_KARMA_INCREASE}</span></a></span><!-- ENDIF -->
+				<!-- IF U_KARMA_DECREASE --><span class="karma-decrease-icon"><a href="{U_KARMA_DECREASE}" title="{L_KARMA_DECREASE}"><span>{L_KARMA_DECREASE}</span></a></span><!-- ENDIF -->
+				</span>
+			<!-- ENDIF -->
+			</dd>
+		<!-- ENDIF -->
+		<!-- [-] Karma MOD //-->
 		</dl>
 	</div>
 

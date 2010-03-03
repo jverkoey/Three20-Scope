@@ -119,6 +119,11 @@ class p_master
 			$this->module_cache = array('modules' => array(), 'parents' => array());
 		}
 
+		// [+] Karma MOD
+		global $karmamod;
+		$karmamod->module_disable($this->module_cache['modules']);
+		// [-] Karma MOD
+
 		// We "could" build a true tree with this function - maybe mod authors want to use this...
 		// Functions for traversing and manipulating the tree are not available though
 		// We might re-structure the module system to use true trees in 3.2.x...
@@ -432,6 +437,10 @@ class p_master
 		global $phpbb_root_path, $phpbb_admin_path, $phpEx, $user;
 
 		$module_path = $this->include_path . $this->p_class;
+		// [+] Karma MOD
+		global $karmamod;
+		$karmamod->module_load($module_path, $this->p_name, $this->p_class);
+		// [-] Karma MOD
 		$icat = request_var('icat', '');
 
 		if ($this->active_module === false)

@@ -589,6 +589,11 @@ class acp_main
 			$template->assign_var('S_REMOVE_INSTALL', true);
 		}
 
+		// [+] Karma MOD
+		global $karmamod;
+		$karmamod->acp_main_install();
+		// [-] Karma MOD
+
 		if (!defined('PHPBB_DISABLE_CONFIG_CHECK') && file_exists($phpbb_root_path . 'config.' . $phpEx) && phpbb_is_writable($phpbb_root_path . 'config.' . $phpEx))
 		{
 			// World-Writable? (000x)

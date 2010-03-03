@@ -1,0 +1,99 @@
+<!-- INCLUDE ucp_header.html -->
+
+<form id="ucp" method="post" action="{S_UCP_ACTION}"{S_FORM_ENCTYPE}>
+
+<h2>{L_TITLE}</h2>
+
+<div class="panel">
+	<div class="inner"><span class="corners-top"><span></span></span>
+
+	<fieldset>
+	<!-- IF ERROR --><p class="error">{ERROR}</p><!-- ENDIF -->
+	<!-- IF S_ENABLE_SELECT -->
+		<dl>
+			<dt><label for="enable1">{L_UCP_KARMA_ENABLE}:</label><br /><span>{L_UCP_KARMA_ENABLE_EXPLAIN}</span></dt>
+			<dd>
+				<label for="enable1"><input type="radio" name="enable" id="enable1" value="1"<!-- IF S_ENABLE --> checked="checked"<!-- ENDIF --> /> {L_YES}</label> 
+				<label for="enable0"><input type="radio" name="enable" id="enable0" value="0"<!-- IF not S_ENABLE --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+			</dd>
+		</dl>
+	<!-- ENDIF -->
+	<!-- IF S_NOTIFY_PM_SELECT -->
+		<dl>
+			<dt><label for="notify_pm1">{L_UCP_KARMA_NOTIFY_PM}:</label><br /><span>{L_UCP_KARMA_NOTIFY_PM_EXPLAIN}</span></dt>
+			<dd>
+				<label for="notify_pm1"><input type="radio" name="notify_pm" id="notify_pm1" value="1"<!-- IF S_NOTIFY_PM --> checked="checked"<!-- ENDIF --> /> {L_YES}</label> 
+				<label for="notify_pm0"><input type="radio" name="notify_pm" id="notify_pm0" value="0"<!-- IF not S_NOTIFY_PM --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+			</dd>
+		</dl>
+	<!-- ENDIF -->
+	<!-- IF S_NOTIFY_EMAIL_SELECT -->
+		<dl>
+			<dt><label for="notify_email1">{L_UCP_KARMA_NOTIFY_EMAIL}:</label><br /><span>{L_UCP_KARMA_NOTIFY_EMAIL_EXPLAIN}</span></dt>
+			<dd>
+				<label for="notify_email1"><input type="radio" name="notify_email" id="notify_email1" value="1"<!-- IF S_NOTIFY_EMAIL --> checked="checked"<!-- ENDIF --> /> {L_YES}</label> 
+				<label for="notify_email0"><input type="radio" name="notify_email" id="notify_email0" value="0"<!-- IF not S_NOTIFY_EMAIL --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+			</dd>
+		</dl>
+	<!-- ENDIF -->
+	<!-- IF S_NOTIFY_JABBER_SELECT -->
+		<dl>
+			<dt><label for="notify_jabber1">{L_UCP_KARMA_NOTIFY_JABBER}:</label><br /><span>{L_UCP_KARMA_NOTIFY_JABBER_EXPLAIN}</span></dt>
+			<dd>
+				<label for="notify_jabber1"><input type="radio" name="notify_jabber" id="notify_jabber1" value="1"<!-- IF S_NOTIFY_JABBER --> checked="checked"<!-- ENDIF --> /> {L_YES}</label> 
+				<label for="notify_jabber0"><input type="radio" name="notify_jabber" id="notify_jabber0" value="0"<!-- IF not S_NOTIFY_JABBER --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+			</dd>
+		</dl>
+	<!-- ENDIF -->		
+	<!-- IF S_TOPLIST_SELECT -->
+		<dl>
+			<dt><label for="toplist1">{L_UCP_KARMA_TOPLIST}:</label><br /><span>{L_UCP_KARMA_TOPLIST_EXPLAIN}</span></dt>
+			<dd>
+				<label for="toplist1"><input type="radio" name="toplist" id="toplist1" value="1"<!-- IF S_TOPLIST --> checked="checked"<!-- ENDIF --> /> {L_YES}</label> 
+				<label for="toplist0"><input type="radio" name="toplist" id="toplist0" value="0"<!-- IF not S_TOPLIST --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+			</dd>
+		</dl>
+		<dl>
+			<dt><label for="toplist_users">{L_UCP_KARMA_TOPLIST_USERS}:</label><br /><span>{L_UCP_KARMA_TOPLIST_USERS_EXPLAIN}</span></dt>
+			<dd><input type="text" name="toplist_users" id="toplist_users" value="{TOPLIST_USERS}" maxlength="8" class="inputbox tiny" style="margin-top: 3px;" /></dd>
+		</dl>
+	<!-- ENDIF -->
+	<!-- IF S_COMMENTS_SELECT -->
+		<dl>
+			<dt><label for="comments_per_page">{L_UCP_KARMA_COMMENTS_PER_PAGE}:</label></dt>
+			<dd><input type="text" name="comments_per_page" id="comments_per_page" value="{COMMENTS_PER_PAGE}" maxlength="3" class="inputbox tiny" style="margin-top: 3px;" /></dd>
+		</dl>
+		<dl>
+			<dt><label for="comments_self1">{L_UCP_KARMA_COMMENTS_SELF}:</label></dt>
+			<dd>
+				<label for="comments_self1"><input type="radio" name="comments_self" id="comments_self1" value="1"<!-- IF S_COMMENTS_SELF --> checked="checked"<!-- ENDIF --> /> {L_YES}</label> 
+				<label for="comments_self0"><input type="radio" name="comments_self" id="comments_self0" value="0"<!-- IF not S_COMMENTS_SELF --> checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+			</dd>
+		</dl>
+		<hr />
+		<dl>
+			<dt><label>{L_UCP_KARMA_VIEW_COMMENTS_DAYS}:</label></dt>
+			<dd>{S_COMMENTS_SORT_DAYS}</dd>
+		</dl>
+		<dl>
+			<dt><label>{L_UCP_KARMA_VIEW_COMMENTS_KEY}:</label></dt>
+			<dd>{S_COMMENTS_SORT_KEY}</dd>
+		</dl>
+		<dl>
+			<dt><label>{L_UCP_KARMA_VIEW_COMMENTS_DIR}:</label></dt>
+			<dd>{S_COMMENTS_SORT_DIR}</dd>
+		</dl>
+	<!-- ENDIF -->
+	</fieldset>
+
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+	
+<fieldset class="submit-buttons">
+	{S_HIDDEN_FIELDS}<input type="reset" value="{L_RESET}" name="reset" class="button2" />&nbsp; 
+	<input type="submit" name="submit" value="{L_SUBMIT}" class="button1" />
+</fieldset>
+
+</form>
+
+<!-- INCLUDE ucp_footer.html -->
