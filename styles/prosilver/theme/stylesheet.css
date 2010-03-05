@@ -20,3 +20,5 @@
 /* [+] Karma MOD */
 @import url("karma.css");
 /* [-] Karma MOD */
+@import url("shCore.css");
+@import url("shTheme.css");

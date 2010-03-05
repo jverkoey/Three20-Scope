@@ -94,6 +94,18 @@
 </script>
 <script type="text/javascript" src="{T_TEMPLATE_PATH}/styleswitcher.js"></script>
 <script type="text/javascript" src="{T_TEMPLATE_PATH}/forum_fn.js"></script>
+<script type="text/javascript" src="{T_TEMPLATE_PATH}/sh/shCore.js"></script>
+<script type="text/javascript" src="{T_TEMPLATE_PATH}/sh/shBrushObjC.js"></script>
+<script type="text/javascript"> 
+//<![CDATA[
+SyntaxHighlighter.config.clipboardSwf = '{T_TEMPLATE_PATH}/sh/swf/clipboard.swf';
+  SyntaxHighlighter.defaults.light = true;
+  SyntaxHighlighter.defaults['tab-size'] = 2;
+  SyntaxHighlighter.defaults['auto-links'] = false;
+  SyntaxHighlighter.defaults.toolbar = false;
+  SyntaxHighlighter.all();
+//]]>
+</script>
 
 <link href="{T_THEME_PATH}/print.css" rel="stylesheet" type="text/css" media="print" title="printonly" />
 <link href="{T_STYLESHEET_LINK}" rel="stylesheet" type="text/css" media="screen, projection" />
