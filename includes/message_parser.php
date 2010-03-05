@@ -1208,15 +1208,15 @@ class parse_message extends bbcode_firstpass
 		$this->message = censor_text($this->message);
 
 		// Parse BBcode
-		if ($allow_bbcode)
-		{
-			$this->bbcode_cache_init();
-
-			// We are giving those parameters to be able to use the bbcode class on its own
-			$this->bbcode_second_pass($this->message, $this->bbcode_uid);
-		}
-
-		$this->message = bbcode_nl2br($this->message);
+		//if ($allow_bbcode)
+		//{
+		//	$this->bbcode_cache_init();
+    //
+		//	// We are giving those parameters to be able to use the bbcode class on its own
+		//	$this->bbcode_second_pass($this->message, $this->bbcode_uid);
+		//}
+    //
+		//$this->message = bbcode_nl2br($this->message);
 		$this->message = smiley_text($this->message, !$allow_smilies);
 
 		if (!$update_this_message)
