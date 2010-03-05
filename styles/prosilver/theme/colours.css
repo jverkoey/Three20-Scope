@@ -712,6 +712,8 @@ a.fontsize {
 .delete-icon, .delete-icon a		{ background-image: url("{IMG_ICON_POST_DELETE_SRC}"); }
 .info-icon, .info-icon a			{ background-image: url("{IMG_ICON_POST_INFO_SRC}"); }
 .warn-icon, .warn-icon a			{ background-image: url("{IMG_ICON_USER_WARN_SRC}"); } /* Need updated warn icon */
+.solve-icon, .solve-icon a		{ background-image: url("{IMG_ICON_TOPIC_SOLVED_SET_SRC}"); }
+.unsolve-icon, .unsolve-icon a		{ background-image: url("{IMG_ICON_TOPIC_SOLVED_UNSET_SRC}"); }
 
 /*  	
 --------------------------------------------------------------

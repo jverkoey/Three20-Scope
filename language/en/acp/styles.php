@@ -246,6 +246,12 @@ $lang = array_merge($lang, array(
 	'IMG_ICON_TOPIC_REPORTED'		=> 'Post reported',
 	'IMG_ICON_TOPIC_UNAPPROVED'		=> 'Post unapproved',
 
+	'IMG_ICON_TOPIC_SOLVED_HEAD'	=> 'Topic is solved',
+	'IMG_ICON_TOPIC_SOLVED_LIST'	=> 'Topic is solved',
+	'IMG_ICON_TOPIC_SOLVED_POST'	=> 'Topic is solved',
+	'IMG_ICON_TOPIC_SOLVED_SET'		=> 'Accept this answer',
+	'IMG_ICON_TOPIC_SOLVED_UNSET'	=> 'Mark topic as not solved',
+
 	'IMG_ICON_USER_ONLINE'		=> 'User online',
 	'IMG_ICON_USER_OFFLINE'		=> 'User offline',
 	'IMG_ICON_USER_PROFILE'		=> 'Show profile',
