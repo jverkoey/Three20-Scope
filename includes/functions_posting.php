@@ -1094,12 +1094,19 @@ function topic_review($topic_id, $forum_id, $mode = 'topic_review', $cur_post_id
 			$decoded_message = bbcode_nl2br($decoded_message);
 		}
 
-		if ($row['bbcode_bitfield'])
-		{
-			$bbcode->bbcode_second_pass($message, $row['bbcode_uid'], $row['bbcode_bitfield']);
-		}
+		//if ($row['bbcode_bitfield'])
+		//{
+		  if (!function_exists('Markdown'))
+  		{
+  			global $phpbb_root_path, $phpEx;
+  			include($phpbb_root_path . 'includes/markdown.' . $phpEx);
+  		}
 
-		$message = bbcode_nl2br($message);
+      $message = Markdown($message);
+			//$bbcode->bbcode_second_pass($message, $row['bbcode_uid'], $row['bbcode_bitfield']);
+		//}
+
+		//$message = bbcode_nl2br($message);
 		$message = smiley_text($message, !$row['enable_smilies']);
 
 		if (!empty($attachments[$row['post_id']]))

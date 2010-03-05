@@ -1174,6 +1174,14 @@ if (!sizeof($error) && $preview)
 
 	$preview_message = $message_parser->format_display($post_data['enable_bbcode'], $post_data['enable_urls'], $post_data['enable_smilies'], false);
 
+	if (!function_exists('Markdown'))
+	{
+		global $phpbb_root_path, $phpEx;
+		include($phpbb_root_path . 'includes/markdown.' . $phpEx);
+	}
+
+  $preview_message = Markdown($preview_message);
+
 	$preview_signature = ($mode == 'edit') ? $post_data['user_sig'] : $user->data['user_sig'];
 	$preview_signature_uid = ($mode == 'edit') ? $post_data['user_sig_bbcode_uid'] : $user->data['user_sig_bbcode_uid'];
 	$preview_signature_bitfield = ($mode == 'edit') ? $post_data['user_sig_bbcode_bitfield'] : $user->data['user_sig_bbcode_bitfield'];
@@ -1188,6 +1196,15 @@ if (!sizeof($error) && $preview)
 		// Not sure about parameters for bbcode/smilies/urls... in signatures
 		$parse_sig->format_display($config['allow_sig_bbcode'], true, $config['allow_sig_smilies']);
 		$preview_signature = $parse_sig->message;
+
+		if (!function_exists('Markdown'))
+		{
+			global $phpbb_root_path, $phpEx;
+			include($phpbb_root_path . 'includes/markdown.' . $phpEx);
+		}
+
+    $preview_signature = Markdown($preview_signature);
+
 		unset($parse_sig);
 	}
 	else

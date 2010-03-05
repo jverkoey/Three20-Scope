@@ -208,14 +208,22 @@ switch ($mode)
 		if ($member['user_sig'])
 		{
 			$member['user_sig'] = censor_text($member['user_sig']);
-			$member['user_sig'] = bbcode_nl2br($member['user_sig']);
+			//$member['user_sig'] = bbcode_nl2br($member['user_sig']);
 
-			if ($member['user_sig_bbcode_bitfield'])
-			{
-				include_once($phpbb_root_path . 'includes/bbcode.' . $phpEx);
-				$bbcode = new bbcode();
-				$bbcode->bbcode_second_pass($member['user_sig'], $member['user_sig_bbcode_uid'], $member['user_sig_bbcode_bitfield']);
-			}
+  		if (!function_exists('Markdown'))
+  		{
+  			global $phpbb_root_path, $phpEx;
+  			include($phpbb_root_path . 'includes/markdown.' . $phpEx);
+  		}
+
+      $member['user_sig'] = Markdown($member['user_sig']);
+
+			//if ($member['user_sig_bbcode_bitfield'])
+			//{
+			//	include_once($phpbb_root_path . 'includes/bbcode.' . $phpEx);
+			//	$bbcode = new bbcode();
+			//	$bbcode->bbcode_second_pass($member['user_sig'], $member['user_sig_bbcode_uid'], $member['user_sig_bbcode_bitfield']);
+			//}
 
 			$member['user_sig'] = smiley_text($member['user_sig']);
 		}
@@ -400,14 +408,22 @@ switch ($mode)
 				$poster_id	= $row['poster_id'];
 				$comment	= censor_text($row['comment_text']);
 
-				// Parse bbcode
-				if ($row['bbcode_bitfield'])
-				{
-					$bbcode = new bbcode(base64_encode($row['bbcode_bitfield']));
-					$bbcode->bbcode_second_pass($comment, $row['bbcode_uid'], $row['bbcode_bitfield']);
-				}
+    		if (!function_exists('Markdown'))
+    		{
+    			global $phpbb_root_path, $phpEx;
+    			include($phpbb_root_path . 'includes/markdown.' . $phpEx);
+    		}
 
-				$comment = bbcode_nl2br($comment);
+        $comment = Markdown($comment);
+
+				// Parse bbcode
+				//if ($row['bbcode_bitfield'])
+				//{
+				//	$bbcode = new bbcode(base64_encode($row['bbcode_bitfield']));
+				//	$bbcode->bbcode_second_pass($comment, $row['bbcode_uid'], $row['bbcode_bitfield']);
+				//}
+
+				//$comment = bbcode_nl2br($comment);
 				$comment = smiley_text($comment, !$config['allow_smilies']);
 
 				if ($karmamod->user_level != 'admin' && (($karmamod->config['anonym_increase'] && $row['karma_action'] == '+') || ($karmamod->config['anonym_decrease'] && $row['karma_action'] == '-')))

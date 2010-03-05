@@ -1061,6 +1061,9 @@ class parse_message extends bbcode_firstpass
 	function parse($allow_bbcode, $allow_magic_url, $allow_smilies, $allow_img_bbcode = true, $allow_flash_bbcode = true, $allow_quote_bbcode = true, $allow_url_bbcode = true, $update_this_message = true, $mode = 'post')
 	{
 		global $config, $db, $user;
+		
+		$allow_bbcode = false;
+		$allow_magic_url = false;
 
 		$this->mode = $mode;
 

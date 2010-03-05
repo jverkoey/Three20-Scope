@@ -518,14 +518,22 @@ switch ($mode)
 		{
 			$member['user_sig'] = censor_text($member['user_sig']);
 
-			if ($member['user_sig_bbcode_bitfield'])
-			{
-				include_once($phpbb_root_path . 'includes/bbcode.' . $phpEx);
-				$bbcode = new bbcode();
-				$bbcode->bbcode_second_pass($member['user_sig'], $member['user_sig_bbcode_uid'], $member['user_sig_bbcode_bitfield']);
-			}
+  		if (!function_exists('Markdown'))
+  		{
+  			global $phpbb_root_path, $phpEx;
+  			include($phpbb_root_path . 'includes/markdown.' . $phpEx);
+  		}
 
-			$member['user_sig'] = bbcode_nl2br($member['user_sig']);
+      $member['user_sig'] = Markdown($member['user_sig']);
+
+			//if ($member['user_sig_bbcode_bitfield'])
+			//{
+			//	include_once($phpbb_root_path . 'includes/bbcode.' . $phpEx);
+			//	$bbcode = new bbcode();
+			//	$bbcode->bbcode_second_pass($member['user_sig'], $member['user_sig_bbcode_uid'], $member['user_sig_bbcode_bitfield']);
+			//}
+
+			//$member['user_sig'] = bbcode_nl2br($member['user_sig']);
 			$member['user_sig'] = smiley_text($member['user_sig']);
 		}
 

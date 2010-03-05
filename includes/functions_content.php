@@ -423,6 +423,14 @@ function generate_text_for_display($text, $uid, $bitfield, $flags)
 	// Parse bbcode if bbcode uid stored and bbcode enabled
 	if ($uid && ($flags & OPTION_FLAG_BBCODE))
 	{
+		if (!function_exists('Markdown'))
+		{
+			global $phpbb_root_path, $phpEx;
+			include($phpbb_root_path . 'includes/markdown.' . $phpEx);
+		}
+
+    $text = Markdown($text);
+/*
 		if (!class_exists('bbcode'))
 		{
 			global $phpbb_root_path, $phpEx;
@@ -438,10 +446,10 @@ function generate_text_for_display($text, $uid, $bitfield, $flags)
 			$bbcode->bbcode($bitfield);
 		}
 
-		$bbcode->bbcode_second_pass($text, $uid);
+		$bbcode->bbcode_second_pass($text, $uid);*/
 	}
 
-	$text = bbcode_nl2br($text);
+	//$text = bbcode_nl2br($text);
 	$text = smiley_text($text, !($flags & OPTION_FLAG_SMILIES));
 
 	return $text;

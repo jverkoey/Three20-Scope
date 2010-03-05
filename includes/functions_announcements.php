@@ -279,12 +279,19 @@ function announcement_post($where_sql, $order, $gotopost)
 	}
 	
 	// Second parse bbcode here
-	if ($row['bbcode_bitfield'])
-	{
-		$bbcode->bbcode_second_pass($message, $row['bbcode_uid'], $row['bbcode_bitfield']);
-	}
+	//if ($row['bbcode_bitfield'])
+	//{
+	  if (!function_exists('Markdown'))
+		{
+			global $phpbb_root_path, $phpEx;
+			include($phpbb_root_path . 'includes/markdown.' . $phpEx);
+		}
+
+    $message = Markdown($message);
+		//$bbcode->bbcode_second_pass($message, $row['bbcode_uid'], $row['bbcode_bitfield']);
+	//}
 	
-	$message = bbcode_nl2br($message);
+	//$message = bbcode_nl2br($message);
 	$message = smiley_text($message);
 	
 	if (!empty($attachments[$row['post_id']]))

@@ -930,23 +930,37 @@ if (!empty($topic_data['poll_start']))
 	{
 		$poll_info[$i]['poll_option_text'] = censor_text($poll_info[$i]['poll_option_text']);
 
-		if ($poll_bbcode !== false)
-		{
-			$poll_bbcode->bbcode_second_pass($poll_info[$i]['poll_option_text'], $poll_info[$i]['bbcode_uid'], $poll_option['bbcode_bitfield']);
-		}
+		//if ($poll_bbcode !== false)
+		//{
+		  if (!function_exists('Markdown'))
+  		{
+  			global $phpbb_root_path, $phpEx;
+  			include($phpbb_root_path . 'includes/markdown.' . $phpEx);
+  		}
 
-		$poll_info[$i]['poll_option_text'] = bbcode_nl2br($poll_info[$i]['poll_option_text']);
+      $poll_info[$i]['poll_option_text'] = Markdown($poll_info[$i]['poll_option_text']);
+			//$poll_bbcode->bbcode_second_pass($poll_info[$i]['poll_option_text'], $poll_info[$i]['bbcode_uid'], $poll_option['bbcode_bitfield']);
+		//}
+
+		//$poll_info[$i]['poll_option_text'] = bbcode_nl2br($poll_info[$i]['poll_option_text']);
 		$poll_info[$i]['poll_option_text'] = smiley_text($poll_info[$i]['poll_option_text']);
 	}
 
 	$topic_data['poll_title'] = censor_text($topic_data['poll_title']);
 
-	if ($poll_bbcode !== false)
-	{
-		$poll_bbcode->bbcode_second_pass($topic_data['poll_title'], $poll_info[0]['bbcode_uid'], $poll_info[0]['bbcode_bitfield']);
-	}
+	//if ($poll_bbcode !== false)
+	//{
+	  if (!function_exists('Markdown'))
+		{
+			global $phpbb_root_path, $phpEx;
+			include($phpbb_root_path . 'includes/markdown.' . $phpEx);
+		}
 
-	$topic_data['poll_title'] = bbcode_nl2br($topic_data['poll_title']);
+    $topic_data['poll_title'] = Markdown($topic_data['poll_title']);
+		//$poll_bbcode->bbcode_second_pass($topic_data['poll_title'], $poll_info[0]['bbcode_uid'], $poll_info[0]['bbcode_bitfield']);
+	//}
+
+	//$topic_data['poll_title'] = bbcode_nl2br($topic_data['poll_title']);
 	$topic_data['poll_title'] = smiley_text($topic_data['poll_title']);
 
 	unset($poll_bbcode);
@@ -1458,12 +1472,19 @@ for ($i = 0, $end = sizeof($post_list); $i < $end; ++$i)
 	{
 		$user_cache[$poster_id]['sig'] = censor_text($user_cache[$poster_id]['sig']);
 
-		if ($user_cache[$poster_id]['sig_bbcode_bitfield'])
-		{
-			$bbcode->bbcode_second_pass($user_cache[$poster_id]['sig'], $user_cache[$poster_id]['sig_bbcode_uid'], $user_cache[$poster_id]['sig_bbcode_bitfield']);
-		}
+		//if ($user_cache[$poster_id]['sig_bbcode_bitfield'])
+		//{
+  		if (!function_exists('Markdown'))
+  		{
+  			global $phpbb_root_path, $phpEx;
+  			include($phpbb_root_path . 'includes/markdown.' . $phpEx);
+  		}
 
-		$user_cache[$poster_id]['sig'] = bbcode_nl2br($user_cache[$poster_id]['sig']);
+      $user_cache[$poster_id]['sig'] = Markdown($user_cache[$poster_id]['sig']);
+			//$bbcode->bbcode_second_pass($user_cache[$poster_id]['sig'], $user_cache[$poster_id]['sig_bbcode_uid'], $user_cache[$poster_id]['sig_bbcode_bitfield']);
+		//}
+
+		//$user_cache[$poster_id]['sig'] = bbcode_nl2br($user_cache[$poster_id]['sig']);
 		$user_cache[$poster_id]['sig'] = smiley_text($user_cache[$poster_id]['sig']);
 		$user_cache[$poster_id]['sig_parsed'] = true;
 	}
@@ -1494,12 +1515,20 @@ for ($i = 0, $end = sizeof($post_list); $i < $end; ++$i)
 	}
 	// www.phpBB-SEO.com SEO TOOLKIT END  - META
 	// Second parse bbcode here
-	if ($row['bbcode_bitfield'])
-	{
-		$bbcode->bbcode_second_pass($message, $row['bbcode_uid'], $row['bbcode_bitfield']);
-	}
+	
+	//if ($row['bbcode_bitfield'])
+	//{
+		if (!function_exists('Markdown'))
+		{
+			global $phpbb_root_path, $phpEx;
+			include($phpbb_root_path . 'includes/markdown.' . $phpEx);
+		}
 
-	$message = bbcode_nl2br($message);
+    $message = Markdown($message);
+		//$bbcode->bbcode_second_pass($message, $row['bbcode_uid'], $row['bbcode_bitfield']);
+	//}
+
+	//$message = bbcode_nl2br($message);
 	$message = smiley_text($message);
 
 	if (!empty($attachments[$row['post_id']]))

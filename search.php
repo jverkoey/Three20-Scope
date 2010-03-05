@@ -1040,17 +1040,34 @@ if ($keywords || $author || $author_id || $search_id || $submit)
 				{
 					// now find context for the searched words
 					$row['post_text'] = get_context($row['post_text'], array_filter(explode('|', $hilit), 'strlen'), $return_chars);
-					$row['post_text'] = bbcode_nl2br($row['post_text']);
+
+      		if (!function_exists('Markdown'))
+      		{
+      			global $phpbb_root_path, $phpEx;
+      			include($phpbb_root_path . 'includes/markdown.' . $phpEx);
+      		}
+
+          $row['post_text'] = Markdown($row['post_text']);
+
+					//$row['post_text'] = bbcode_nl2br($row['post_text']);
 				}
 				else
 				{
-					// Second parse bbcode here
-					if ($row['bbcode_bitfield'])
-					{
-						$bbcode->bbcode_second_pass($row['post_text'], $row['bbcode_uid'], $row['bbcode_bitfield']);
-					}
+      		if (!function_exists('Markdown'))
+      		{
+      			global $phpbb_root_path, $phpEx;
+      			include($phpbb_root_path . 'includes/markdown.' . $phpEx);
+      		}
 
-					$row['post_text'] = bbcode_nl2br($row['post_text']);
+          $row['post_text'] = Markdown($row['post_text']);
+
+					// Second parse bbcode here
+					//if ($row['bbcode_bitfield'])
+					//{
+					//	$bbcode->bbcode_second_pass($row['post_text'], $row['bbcode_uid'], $row['bbcode_bitfield']);
+					//}
+
+					//$row['post_text'] = bbcode_nl2br($row['post_text']);
 					$row['post_text'] = smiley_text($row['post_text']);
 
 					if (!empty($attachments[$row['post_id']]))
