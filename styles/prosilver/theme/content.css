@@ -265,6 +265,7 @@ div[class].topic-actions {
 
 .postbody .content h1 {
   color: #000;
+  margin-bottom: 5px;
 }
 
 .postbody .content h2 {
